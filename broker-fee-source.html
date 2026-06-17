@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Broker Fee Amortization</title>
+<style>
+  :root {
+    --color-text-primary: #1a1a18;
+    --color-text-secondary: #6b6b67;
+    --color-text-tertiary: #9a9a96;
+    --color-text-info: #1a56db;
+    --color-text-warning: #92400e;
+    --color-background-secondary: #f5f5f3;
+    --color-background-info: #eff6ff;
+    --color-background-warning: #fffbeb;
+    --color-border-warning: #fcd34d;
+    --border-radius-md: 8px;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #fff;
+    color: var(--color-text-primary);
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1.5rem;
+  }
+</style>
+</head>
+<body>
+
+<h2 class="sr-only">Infographic showing how a 15% broker fee on $1,890.85/month rent-stabilized apartment amortizes over 2 to 5 years</h2>
+
+<div style="padding: 1.5rem 0;">
+
+<div style="text-align: center; margin-bottom: 1.25rem;">
+  <p style="font-size: 13px; color: var(--color-text-secondary); margin: 0 0 4px; text-transform: uppercase; letter-spacing: 0.5px;">Monthly rent · 2-year lease</p>
+  <p style="font-size: 32px; font-weight: 500; margin: 0; color: var(--color-text-primary);">$1,890.85</p>
+  <div style="display: inline-flex; align-items: center; gap: 4px; margin-top: 6px; background: var(--color-background-info); color: var(--color-text-info); font-size: 12px; padding: 3px 10px; border-radius: var(--border-radius-md);">
+    ✓ Rent stabilized
+  </div>
+  <p style="font-size: 13px; color: var(--color-text-secondary); margin: 8px 0 0;">15% broker fee = <strong style="font-weight:500;">$3,403.53</strong> one-time</p>
+</div>
+
+<div style="display: flex; justify-content: center; gap: 12px; margin-bottom: 1.5rem; flex-wrap: wrap;">
+  <div style="font-size: 12px; color: var(--color-text-secondary); background: var(--color-background-secondary); padding: 4px 10px; border-radius: var(--border-radius-md);">1-yr lease (RGB #57, 3.0%): $1,863.71</div>
+  <div style="font-size: 12px; color: var(--color-text-info); background: var(--color-background-info); padding: 4px 10px; border-radius: var(--border-radius-md); font-weight: 500;">2-yr lease (RGB #57, 4.5%): $1,890.85</div>
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin-bottom: 2rem;">
+  <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.85rem 0.5rem; text-align: center;">
+    <p style="font-size: 11px; color: var(--color-text-secondary); margin: 0 0 4px;">2-year lease</p>
+    <p style="font-size: 18px; font-weight: 500; margin: 0; color: #534AB7;">$2,033</p>
+    <p style="font-size: 11px; color: var(--color-text-tertiary); margin: 3px 0 0;">+$142/mo</p>
+  </div>
+  <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.85rem 0.5rem; text-align: center;">
+    <p style="font-size: 11px; color: var(--color-text-secondary); margin: 0 0 4px;">3 years</p>
+    <p style="font-size: 18px; font-weight: 500; margin: 0; color: #378ADD;">$1,985</p>
+    <p style="font-size: 11px; color: var(--color-text-tertiary); margin: 3px 0 0;">+$95/mo</p>
+  </div>
+  <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.85rem 0.5rem; text-align: center;">
+    <p style="font-size: 11px; color: var(--color-text-secondary); margin: 0 0 4px;">4 years</p>
+    <p style="font-size: 18px; font-weight: 500; margin: 0; color: #0F6E56;">$1,962</p>
+    <p style="font-size: 11px; color: var(--color-text-tertiary); margin: 3px 0 0;">+$71/mo</p>
+  </div>
+  <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.85rem 0.5rem; text-align: center;">
+    <p style="font-size: 11px; color: var(--color-text-secondary); margin: 0 0 4px;">5 years</p>
+    <p style="font-size: 18px; font-weight: 500; margin: 0; color: #1D9E75;">$1,948</p>
+    <p style="font-size: 11px; color: var(--color-text-tertiary); margin: 3px 0 0;">+$57/mo</p>
+  </div>
+</div>
+
+<p style="font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 8px;">Effective monthly cost by length of stay</p>
+<div style="position: relative; width: 100%; height: 280px;">
+  <canvas id="amortChart" role="img" aria-label="Stacked bar chart showing effective monthly rent declining from $2,033 at 2 years to $1,948 at 5 years as the broker fee amortizes">Effective monthly rent: 2-yr lease $2,033, 3 years $1,985, 4 years $1,962, 5 years $1,948.</canvas>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px; margin-top: 8px; font-size: 12px; color: var(--color-text-secondary);">
+  <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: #378ADD;"></span>Base rent</span>
+  <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; border-radius: 2px; background: #534AB7;"></span>Broker fee portion</span>
+</div>
+
+<div style="margin-top: 2rem; padding: 1rem; background: var(--color-background-secondary); border-radius: var(--border-radius-md);">
+  <p style="font-size: 13px; color: var(--color-text-secondary); margin: 0; line-height: 1.6;">
+    ✓ <strong style="font-weight:500;">Rent stabilized apartment.</strong> Future increases are set annually by the NYC Rent Guidelines Board — not the open market. Your rent grows at controlled, predictable rates, making the long-term value of this apartment even stronger.
+  </p>
+</div>
+
+<div style="margin-top: 12px; padding: 1rem; background: var(--color-background-warning); border: 0.5px solid var(--color-border-warning); border-radius: var(--border-radius-md);">
+  <p style="font-size: 13px; color: var(--color-text-warning); margin: 0; line-height: 1.6;">
+    ⚠ <strong style="font-weight:500;">Note:</strong> This illustration uses a flat base rent of $1,890.85/mo for simplicity. Actual rent will reflect annual Rent Guidelines Board adjustments in years beyond the initial lease term.
+  </p>
+</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const baseRent = 1890.85;
+const fee = 3403.53;
+const labels = ['2-yr lease','3 years','4 years','5 years'];
+const months = [24, 36, 48, 60];
+const feePerMonth = months.map(m => Math.round((fee / m) * 100) / 100);
+const totals = feePerMonth.map(f => baseRent + f);
+const isDark = matchMedia('(prefers-color-scheme: dark)').matches;
+
+new Chart(document.getElementById('amortChart'), {
+  type: 'bar',
+  data: {
+    labels: labels,
+    datasets: [
+      {
+        label: 'Base rent',
+        data: [baseRent, baseRent, baseRent, baseRent],
+        backgroundColor: '#378ADD',
+        borderRadius: { topLeft: 0, topRight: 0 },
+        barPercentage: 0.55
+      },
+      {
+        label: 'Broker fee portion',
+        data: feePerMonth,
+        backgroundColor: '#534AB7',
+        borderRadius: { topLeft: 4, topRight: 4 },
+        barPercentage: 0.55
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: function(ctx) {
+            return ctx.dataset.label + ': $' + ctx.raw.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+          },
+          footer: function(items) {
+            const total = items.reduce((s, i) => s + i.raw, 0);
+            return 'Effective total: $' + total.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}) + '/mo';
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        stacked: true,
+        grid: { display: false },
+        ticks: { color: isDark ? '#B4B2A9' : '#888780', font: { size: 12 } },
+        border: { display: false }
+      },
+      y: {
+        stacked: true,
+        min: 1700,
+        max: 2150,
+        grid: { color: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)' },
+        ticks: {
+          color: isDark ? '#B4B2A9' : '#888780',
+          font: { size: 12 },
+          callback: function(v) { return '$' + v.toLocaleString(); }
+        },
+        border: { display: false }
+      }
+    }
+  },
+  plugins: [{
+    afterDraw: function(chart) {
+      const ctx = chart.ctx;
+      const meta = chart.getDatasetMeta(1);
+      ctx.save();
+      ctx.font = '500 12px sans-serif';
+      ctx.fillStyle = isDark ? '#D3D1C7' : '#444441';
+      ctx.textAlign = 'center';
+      meta.data.forEach(function(bar, i) {
+        const total = '$' + Math.round(totals[i]).toLocaleString();
+        ctx.fillText(total, bar.x, bar.y - 8);
+      });
+      ctx.restore();
+    }
+  }]
+});
+</script>
+
+</body>
+</html>
