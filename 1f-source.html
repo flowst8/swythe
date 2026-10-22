@@ -345,7 +345,7 @@ tbody td:first-child { text-align: left; color: var(--ink-2); }
       <div class="apt apt-a">
         <div class="apt-tag">This Apartment</div>
         <div class="apt-rent">$2,271<span class="apt-unit">.80/mo</span></div>
-        <div class="apt-note">+ $4,089 broker fee (15% of one year's rent)</div>
+        <div class="apt-note">+ $5,000 broker fee (one-time)</div>
       </div>
       <div class="vs">vs</div>
       <div class="apt apt-b">
@@ -357,7 +357,7 @@ tbody td:first-child { text-align: left; color: var(--ink-2); }
 
     <div class="stats">
       <div class="stat">
-        <div class="stat-val is-gold">~8 mos</div>
+        <div class="stat-val is-gold">~9.5 mos</div>
         <div class="stat-lbl">Break-even</div>
       </div>
       <div class="stat">
@@ -365,7 +365,7 @@ tbody td:first-child { text-align: left; color: var(--ink-2); }
         <div class="stat-lbl">Savings after</div>
       </div>
       <div class="stat">
-        <div class="stat-val is-green">$37,953</div>
+        <div class="stat-val is-green">$37,042</div>
         <div class="stat-lbl">Saved at 5 years</div>
       </div>
     </div>
@@ -396,10 +396,10 @@ tbody td:first-child { text-align: left; color: var(--ink-2); }
           </tr>
         </thead>
         <tbody>
-          <tr><td>2 years</td><td>$58,612</td><td>$68,208</td><td class="td-save">$9,596</td></tr>
-          <tr><td>3 years</td><td>$85,874</td><td>$103,842</td><td class="td-save">$17,968</td></tr>
-          <tr><td>4 years</td><td>$113,136</td><td>$140,546</td><td class="td-save">$27,410</td></tr>
-          <tr><td>5 years</td><td>$140,397</td><td>$178,350</td><td class="td-save">$37,953</td></tr>
+          <tr><td>2 years</td><td>$59,523</td><td>$68,208</td><td class="td-save">$8,685</td></tr>
+          <tr><td>3 years</td><td>$86,785</td><td>$103,842</td><td class="td-save">$17,057</td></tr>
+          <tr><td>4 years</td><td>$114,046</td><td>$140,546</td><td class="td-save">$26,500</td></tr>
+          <tr><td>5 years</td><td>$141,308</td><td>$178,350</td><td class="td-save">$37,042</td></tr>
         </tbody>
       </table>
     </div>
@@ -508,7 +508,7 @@ function switchTab(id) {
   if (id === 'compare') requestAnimationFrame(drawChart);
 }
 
-var BASE_A = 2271.80, FEE = 4089.24, BASE_B = 2800, MONTHS = 24, MKT = 0.03;
+var BASE_A = 2271.80, FEE = 5000, BASE_B = 2800, MONTHS = 24, MKT = 0.03;
 function cumA(m) { return FEE + m * BASE_A; }
 function cumB(m) {
   var t = 0;
