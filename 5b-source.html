@@ -330,7 +330,7 @@ tbody td:first-child { text-align: left; color: var(--ink-2); }
   <div class="hdr">
     <div class="hdr-eyebrow">Cost Analysis</div>
     <h1>Broker Fee vs. Market Rate</h1>
-    <p>How this apartment stacks up against a no-fee $2,400/mo market rental over time</p>
+    <p id="subtitle"></p>
   </div>
 
   <div class="tabs">
@@ -509,6 +509,7 @@ function switchTab(id) {
 }
 
 var BASE_A = 1936.37, FEE = 500, BASE_B = 2400, MONTHS = 24, MKT = 0.03;
+document.getElementById('subtitle').textContent = 'How this apartment stacks up against a no-fee $' + BASE_B.toLocaleString() + '/mo market rental over time';
 function cumA(m) { return FEE + m * BASE_A; }
 function cumB(m) {
   var t = 0;
