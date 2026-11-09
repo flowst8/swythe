@@ -382,7 +382,7 @@ tbody td:first-child { text-align: left; color: var(--ink-2); }
 
     <div class="disclaimer">
       <p><strong>This apartment (rent-stabilized):</strong> Future rent increases beyond the initial lease term are set annually by the NYC Rent Guidelines Board — not by the landlord or open market. This illustration holds the base rent flat; actual rent in future terms will reflect each year's RGB order. See the RGB tab for the full record.</p>
-      <p><strong>Market rate comparison:</strong> The $2,300/mo figure is an assumed comparator. This model applies a conservative 3% annual increase as an illustrative planning assumption — actual market rents fluctuate with supply, demand, and broader economic conditions, and may rise, remain flat, or decline. Outcomes may differ significantly in either direction.</p>
+      <p><strong>Market rate comparison:</strong> The <span id="mkt-note-rent">$2,400</span>/mo figure is an assumed comparator. This model applies a conservative 3% annual increase as an illustrative planning assumption — actual market rents fluctuate with supply, demand, and broader economic conditions, and may rise, remain flat, or decline. Outcomes may differ significantly in either direction.</p>
     </div>
 
     <div class="sec-label">Total savings by length of stay</div>
@@ -510,6 +510,7 @@ function switchTab(id) {
 }
 
 var BASE_A = 1936.37, FEE = 5000, BASE_B = 2400, MONTHS = 24, MKT = 0.03;
+document.getElementById('mkt-note-rent').textContent = '$' + BASE_B.toLocaleString();
 document.getElementById('subtitle').textContent = 'How this apartment stacks up against a no-fee $' + BASE_B.toLocaleString() + '/mo market rental over time';
 function cumA(m) { return FEE + m * BASE_A; }
 function cumB(m) {
